@@ -1,0 +1,14 @@
+[Unit]
+Description=godaddyactualizer checks actual IP address and updates records on godaddy.com in case of a change
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/godaddyactualizer
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+WorkingDirectory=/usr/local/src
+
+[Install]
+WantedBy=multi-user.target
+Alias=godaddyactualizer.service
